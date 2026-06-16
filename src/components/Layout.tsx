@@ -116,8 +116,8 @@ export default function Layout({ children }: Props) {
           💰 Core Investment
         </span>
 
-        {/* Links — hidden on mobile */}
-        <div className="hidden md:flex items-center gap-6 ml-8">
+        {/* Links — hidden on mobile/tablet */}
+        <div className="hidden lg:flex items-center gap-6 ml-8">
           {links.map(link => (
             <Link
               key={link.to}
@@ -133,18 +133,18 @@ export default function Layout({ children }: Props) {
           ))}
         </div>
 
-        {/* Sign out — hidden on mobile */}
+        {/* Sign out — hidden on mobile/tablet */}
         <button
           onClick={handleLogout}
-          className="hidden md:block ml-auto text-slate-500 hover:text-white text-sm transition-colors"
+          className="hidden lg:block ml-auto text-slate-500 hover:text-white text-sm transition-colors"
         >
           Sign out
         </button>
 
-        {/* Hamburger — visible on mobile */}
+        {/* Hamburger — visible on mobile/tablet */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden ml-auto text-slate-400 hover:text-white p-2"
+          className="lg:hidden ml-auto text-slate-400 hover:text-white p-2"
         >
           {menuOpen ? (
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -160,7 +160,7 @@ export default function Layout({ children }: Props) {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden bg-slate-900 border-b border-slate-800 px-6 py-4 flex flex-col gap-4">
+        <div className="lg:hidden bg-slate-900 border-b border-slate-800 px-6 py-4 flex flex-col gap-4">
           {links.map(link => (
             <Link
               key={link.to}
