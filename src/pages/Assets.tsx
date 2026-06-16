@@ -200,7 +200,7 @@ export default function Assets() {
 
       {/* Create/edit modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
           <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 w-full max-w-md max-h-[90vh] overflow-y-auto">
             <h2 className="text-white font-bold text-lg mb-5">
               {editingAsset ? 'Edit asset' : 'New asset'}
@@ -287,7 +287,7 @@ export default function Assets() {
 
       {/* Delete confirmation modal */}
       {deletingAsset && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
           <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 w-full max-w-sm">
             <h2 className="text-white font-bold text-lg mb-2">Delete asset?</h2>
             <p className="text-slate-400 text-sm mb-6">

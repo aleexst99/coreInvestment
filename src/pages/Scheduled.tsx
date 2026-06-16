@@ -181,7 +181,7 @@ export default function Scheduled() {
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
           <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 w-full max-w-md">
             <h2 className="text-white font-bold text-lg mb-5">New scheduled contribution</h2>
 
@@ -252,7 +252,7 @@ export default function Scheduled() {
       )}
 
       {deletingItem && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
           <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 w-full max-w-sm">
             <h2 className="text-white font-bold text-lg mb-2">Delete scheduled contribution?</h2>
             <p className="text-slate-400 text-sm mb-6">
