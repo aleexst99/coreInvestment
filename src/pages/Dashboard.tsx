@@ -97,7 +97,7 @@ export default function Dashboard() {
             <XAxis dataKey="date" tick={{ fill: '#64748b', fontSize: 12 }} axisLine={false} tickLine={false} />
             <YAxis tick={{ fill: '#64748b', fontSize: 12 }} axisLine={false} tickLine={false} tickFormatter={(v) => `€${v.toLocaleString()}`} />
             <Tooltip
-              formatter={(value: number) => [`€${value.toLocaleString()}`, 'Total value']}
+              formatter={(value) => [`€${Number(value).toLocaleString()}`, 'Total value']}
               contentStyle={{ backgroundColor: '#0f172a', border: '1px solid #1e293b', borderRadius: '8px', color: '#fff' }}
             />
             <Area type="monotone" dataKey="value" stroke="#6366f1" strokeWidth={2} fill="url(#colorValue)" />
@@ -118,7 +118,7 @@ export default function Dashboard() {
                 ))}
               </Pie>
               <Tooltip
-                formatter={(value: number, name: string) => [`€${value.toLocaleString()}`, name]}
+                formatter={(value, name) => [`€${Number(value).toLocaleString()}`, name as string]}
                 contentStyle={{ backgroundColor: '#0f172a', border: '1px solid #1e293b', borderRadius: '8px', color: '#fff' }}
               />
             </PieChart>

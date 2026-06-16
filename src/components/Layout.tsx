@@ -10,7 +10,7 @@ interface Props {
 
 export default function Layout({ children }: Props) {
   const navigate = useNavigate()
-  const { setAssets, setInvestments, setAssetValues, setScheduledInvestments, investments } = useAppStore()
+  const { setAssets, setInvestments, setAssetValues, setScheduledInvestments } = useAppStore()
 
   useEffect(() => {
     loadData()
