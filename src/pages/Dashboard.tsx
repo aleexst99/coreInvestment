@@ -65,7 +65,7 @@ export default function Dashboard() {
       <h1 className="text-2xl font-bold text-white mb-6">Dashboard</h1>
 
       {/* Summary cards */}
-      <div className="grid grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
         <div className="bg-slate-900 rounded-xl p-5 border border-slate-800">
           <p className="text-sm text-slate-400 mb-1">Total invested</p>
           <p className="text-2xl font-bold text-white">€{totalInvested.toLocaleString()}</p>
@@ -106,7 +106,7 @@ export default function Dashboard() {
       </div>
 
       {/* Distribution + assets */}
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
         <div className="bg-slate-900 rounded-xl p-6 border border-slate-800">
           <h2 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4">Allocation</h2>

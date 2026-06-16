@@ -128,7 +128,7 @@ export default function Assets() {
         </button>
       </div>
 
-      <div className="bg-slate-900 rounded-xl border border-slate-800 overflow-hidden">
+      <div className="bg-slate-900 rounded-xl border border-slate-800 overflow-x-auto">
         {assets.length === 0 ? (
           <p className="text-slate-500 text-center py-12">No assets yet</p>
         ) : (
