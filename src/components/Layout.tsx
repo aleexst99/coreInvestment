@@ -14,14 +14,8 @@ export default function Layout({ children }: Props) {
   const { setAssets, setInvestments, setAssetValues, setScheduledInvestments } = useAppStore()
   const [menuOpen, setMenuOpen] = useState(false)
 
-  useEffect(() => {
-    loadData()
-  }, [])
-
-  // Cierra el menú al cambiar de página
-  useEffect(() => {
-    setMenuOpen(false)
-  }, [location.pathname])
+  useEffect(() => { loadData() }, [])
+  useEffect(() => { setMenuOpen(false) }, [location.pathname])
 
   async function loadData() {
     const { data: { user } } = await supabase.auth.getUser()
@@ -39,14 +33,12 @@ export default function Layout({ children }: Props) {
     if (assetValues.data) setAssetValues(assetValues.data)
     if (scheduled.data) {
       setScheduledInvestments(scheduled.data)
-
       const newInvestments = await processScheduledInvestments(scheduled.data, user.id)
       if (newInvestments.length > 0) {
         setInvestments([...(investments.data ?? []), ...newInvestments])
       }
     }
 
-    // Auto-calculate value for real estate assets with interest
     if (assets.data && investments.data) {
       const today = new Date()
       today.setHours(0, 0, 0, 0)
@@ -109,23 +101,18 @@ export default function Layout({ children }: Props) {
 
   return (
     <div className="min-h-screen bg-slate-950">
-
       <nav className="bg-slate-900 border-b border-slate-800 h-16 flex items-center px-6 lg:px-8">
-        {/* Logo */}
         <span className="text-white font-bold text-lg tracking-tight">
           💰 Core Investment
         </span>
 
-        {/* Links — hidden on mobile/tablet */}
         <div className="hidden lg:flex items-center gap-6 ml-8">
           {links.map(link => (
             <Link
               key={link.to}
               to={link.to}
               className={`text-sm font-medium transition-colors ${
-                location.pathname === link.to
-                  ? 'text-white'
-                  : 'text-slate-400 hover:text-white'
+                location.pathname === link.to ? 'text-white' : 'text-slate-400 hover:text-white'
               }`}
             >
               {link.label}
@@ -133,7 +120,6 @@ export default function Layout({ children }: Props) {
           ))}
         </div>
 
-        {/* Sign out — hidden on mobile/tablet */}
         <button
           onClick={handleLogout}
           className="hidden lg:block ml-auto text-slate-500 hover:text-white text-sm transition-colors"
@@ -141,7 +127,6 @@ export default function Layout({ children }: Props) {
           Sign out
         </button>
 
-        {/* Hamburger — visible on mobile/tablet */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="lg:hidden ml-auto text-slate-400 hover:text-white p-2"
@@ -158,7 +143,6 @@ export default function Layout({ children }: Props) {
         </button>
       </nav>
 
-      {/* Mobile menu */}
       {menuOpen && (
         <div className="lg:hidden bg-slate-900 border-b border-slate-800 px-6 py-4 flex flex-col gap-4">
           {links.map(link => (
@@ -166,9 +150,7 @@ export default function Layout({ children }: Props) {
               key={link.to}
               to={link.to}
               className={`text-sm font-medium transition-colors ${
-                location.pathname === link.to
-                  ? 'text-white'
-                  : 'text-slate-400 hover:text-white'
+                location.pathname === link.to ? 'text-white' : 'text-slate-400 hover:text-white'
               }`}
             >
               {link.label}
@@ -186,7 +168,6 @@ export default function Layout({ children }: Props) {
       <main className="max-w-6xl mx-auto px-4 lg:px-8 py-6 lg:py-8">
         {children}
       </main>
-
     </div>
   )
 }

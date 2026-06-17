@@ -198,7 +198,6 @@ export default function Assets() {
         )}
       </div>
 
-      {/* Create/edit modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
           <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 w-full max-w-md max-h-[90vh] overflow-y-auto">
@@ -285,7 +284,6 @@ export default function Assets() {
         </div>
       )}
 
-      {/* Delete confirmation modal */}
       {deletingAsset && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
           <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 w-full max-w-sm">

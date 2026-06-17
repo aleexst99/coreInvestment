@@ -1,7 +1,6 @@
 import { supabase } from './supabase'
 import type { ScheduledInvestment } from '../types'
 
-// Calcula la siguiente fecha según la frecuencia
 function getNextDate(date: Date, frequency: ScheduledInvestment['frequency']): Date {
   const next = new Date(date)
   switch (frequency) {
@@ -13,7 +12,6 @@ function getNextDate(date: Date, frequency: ScheduledInvestment['frequency']): D
   return next
 }
 
-// Procesa todas las aportaciones programadas pendientes
 export async function processScheduledInvestments(
   scheduledInvestments: ScheduledInvestment[],
   userId: string
@@ -29,7 +27,6 @@ export async function processScheduledInvestments(
     let nextDate = new Date(scheduled.next_date)
     nextDate.setHours(0, 0, 0, 0)
 
-    // Mientras la next_date sea hoy o anterior, registramos la aportación
     while (nextDate <= today) {
       newInvestments.push({
         user_id: userId,
@@ -39,19 +36,15 @@ export async function processScheduledInvestments(
         type: 'scheduled' as const,
         notes: `Scheduled contribution (${scheduled.frequency})`,
       })
-
-      // Calculamos la siguiente fecha
       nextDate = getNextDate(nextDate, scheduled.frequency)
     }
 
-    // Actualizamos next_date en Supabase con la próxima fecha futura
     await supabase
       .from('scheduled_investments')
       .update({ next_date: nextDate.toISOString().split('T')[0] })
       .eq('id', scheduled.id)
   }
 
-  // Insertamos todas las aportaciones generadas de una vez
   if (newInvestments.length > 0) {
     const { data } = await supabase
       .from('investments')
