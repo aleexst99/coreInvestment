@@ -88,6 +88,20 @@ Tests are written with [Vitest](https://vitest.dev/) and [React Testing Library]
 - [ ] Push notifications for scheduled contributions
 - [ ] Multiple portfolios per user
 
+## CI/CD
+
+GitHub Actions runs on every push and pull request to `main` or `develop`:
+
+1. **Install dependencies** — `npm ci`
+2. **Run tests** — `npm run test:run` (14 tests)
+3. **Build** — `npm run build`
+
+If any step fails, the merge is blocked.
+
+Required repository secrets:
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_ANON_KEY`
+
 ## Deployment
 
 The app is deployed on [Vercel](https://vercel.com) and available at [coreinvestment.eu](https://www.coreinvestment.eu).
