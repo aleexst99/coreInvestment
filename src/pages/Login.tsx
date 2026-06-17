@@ -10,6 +10,21 @@ export default function Login() {
 
   const navigate = useNavigate()
 
+  async function handleDemo() {
+    setIsLoading(true)
+    setError('')
+    const { error } = await supabase.auth.signInWithPassword({
+      email: 'demo@coreinvestment.eu',
+      password: 'demo1234',
+    })
+    if (error) {
+      setError('Demo account unavailable. Please try again later.')
+      setIsLoading(false)
+      return
+    }
+    navigate('/dashboard')
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setIsLoading(true)
@@ -70,6 +85,23 @@ export default function Login() {
             {isLoading ? 'Signing in...' : 'Sign in'}
           </button>
         </form>
+
+        <div className="relative my-5">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-slate-700" />
+          </div>
+          <div className="relative flex justify-center text-xs text-slate-500">
+            <span className="bg-slate-900 px-3">or</span>
+          </div>
+        </div>
+
+        <button
+          onClick={handleDemo}
+          disabled={isLoading}
+          className="w-full bg-slate-800 hover:bg-slate-700 disabled:opacity-50 text-slate-300 font-semibold py-2.5 rounded-lg transition-colors"
+        >
+          Try demo
+        </button>
 
       </div>
     </div>

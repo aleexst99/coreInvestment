@@ -19,6 +19,17 @@ Personal investment portfolio tracker — manage assets, contributions, and trac
 - [Zustand](https://zustand-demo.pmnd.rs/) — global state management
 - [Recharts](https://recharts.org/) — charts
 
+## Branch strategy
+
+| Branch | Purpose |
+|--------|---------|
+| `main` | Production — deployed to Vercel automatically |
+| `develop` | Development — merge features here before releasing |
+| `feature/*` | New features — e.g. `feature/crypto-prices` |
+| `fix/*` | Bug fixes — e.g. `fix/scheduled-dates` |
+
+**Workflow:** `feature/x` → `develop` → `main`
+
 ## Getting started
 
 ### 1. Clone the repo
@@ -48,6 +59,23 @@ VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```bash
 npm run dev
 ```
+
+### 5. Run tests
+
+```bash
+npm run test        # watch mode
+npm run test:run    # single run
+```
+
+## Testing
+
+Tests are written with [Vitest](https://vitest.dev/) and [React Testing Library](https://testing-library.com/).
+
+| File | What it tests |
+|------|--------------|
+| `scheduledInvestments.test.ts` | Date calculation logic for recurring contributions |
+| `store.test.ts` | Zustand global state — set/read/clear |
+| `Login.test.tsx` | Login component — error messages, loading state |
 
 ## Roadmap
 
