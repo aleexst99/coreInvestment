@@ -107,11 +107,11 @@ export default function Scheduled() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
         <h1 className="text-2xl font-bold text-white">Scheduled contributions</h1>
         <button
           onClick={openModal}
-          className="bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+          className="bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors whitespace-nowrap"
         >
           + New scheduled
         </button>
@@ -124,12 +124,12 @@ export default function Scheduled() {
           <table className="w-full">
             <thead>
               <tr className="border-b border-slate-800">
-                <th className="text-left text-xs text-slate-400 uppercase tracking-wider px-6 py-3">Asset</th>
-                <th className="text-left text-xs text-slate-400 uppercase tracking-wider px-6 py-3">Frequency</th>
-                <th className="text-right text-xs text-slate-400 uppercase tracking-wider px-6 py-3">Amount</th>
-                <th className="text-left text-xs text-slate-400 uppercase tracking-wider px-6 py-3">Next date</th>
-                <th className="text-left text-xs text-slate-400 uppercase tracking-wider px-6 py-3">Status</th>
-                <th className="px-6 py-3"></th>
+                <th className="text-left text-xs text-slate-400 uppercase tracking-wider px-3 py-3 sm:px-6">Asset</th>
+                <th className="hidden sm:table-cell text-left text-xs text-slate-400 uppercase tracking-wider px-3 py-3 sm:px-6">Frequency</th>
+                <th className="text-right text-xs text-slate-400 uppercase tracking-wider px-3 py-3 sm:px-6">Amount</th>
+                <th className="hidden md:table-cell text-left text-xs text-slate-400 uppercase tracking-wider px-3 py-3 sm:px-6">Next date</th>
+                <th className="text-left text-xs text-slate-400 uppercase tracking-wider px-3 py-3 sm:px-6">Status</th>
+                <th className="px-3 py-3 sm:px-6"></th>
               </tr>
             </thead>
             <tbody>
@@ -137,22 +137,22 @@ export default function Scheduled() {
                 const asset = assets.find(a => a.id === item.asset_id)
                 return (
                   <tr key={item.id} className="border-b border-slate-800 last:border-0 hover:bg-slate-800 transition-colors">
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-4 sm:px-6">
                       <div className="flex items-center gap-2">
-                        <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: asset?.color }} />
+                        <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: asset?.color }} />
                         <span className="text-sm font-medium text-white">{asset?.name ?? '—'}</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-sm text-slate-400">
+                    <td className="hidden sm:table-cell px-3 py-4 sm:px-6 text-sm text-slate-400">
                       {FREQUENCY_LABELS[item.frequency]}
                     </td>
-                    <td className="px-6 py-4 text-sm font-semibold text-white text-right">
+                    <td className="px-3 py-4 sm:px-6 text-sm font-semibold text-white text-right whitespace-nowrap">
                       €{item.amount.toLocaleString()}
                     </td>
-                    <td className="px-6 py-4 text-sm text-slate-400">
+                    <td className="hidden md:table-cell px-3 py-4 sm:px-6 text-sm text-slate-400 whitespace-nowrap">
                       {new Date(item.next_date).toLocaleDateString('en-GB')}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-4 sm:px-6">
                       <button
                         onClick={() => toggleActive(item)}
                         className={`text-xs px-2 py-1 rounded-full font-medium transition-colors ${
@@ -164,10 +164,10 @@ export default function Scheduled() {
                         {item.is_active ? 'Active' : 'Paused'}
                       </button>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-4 sm:px-6">
                       <button
                         onClick={() => setDeletingItem(item)}
-                        className="text-slate-400 hover:text-red-400 text-xs px-3 py-1.5 rounded-lg hover:bg-slate-700 transition-colors"
+                        className="text-slate-400 hover:text-red-400 text-xs px-2 py-1.5 sm:px-3 rounded-lg hover:bg-slate-700 transition-colors"
                       >
                         Delete
                       </button>

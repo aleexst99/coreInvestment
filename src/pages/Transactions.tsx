@@ -121,11 +121,11 @@ export default function Transactions() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
         <h1 className="text-2xl font-bold text-white">Investments</h1>
         <button
           onClick={openModal}
-          className="bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+          className="bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors whitespace-nowrap"
         >
           + New contribution
         </button>
@@ -138,11 +138,11 @@ export default function Transactions() {
           <table className="w-full">
             <thead>
               <tr className="border-b border-slate-800">
-                <th className="text-left text-xs text-slate-400 uppercase tracking-wider px-6 py-3">Asset</th>
-                <th className="text-left text-xs text-slate-400 uppercase tracking-wider px-6 py-3">Date</th>
-                <th className="text-right text-xs text-slate-400 uppercase tracking-wider px-6 py-3">Amount</th>
-                <th className="text-left text-xs text-slate-400 uppercase tracking-wider px-6 py-3">Type</th>
-                <th className="text-left text-xs text-slate-400 uppercase tracking-wider px-6 py-3">Notes</th>
+                <th className="text-left text-xs text-slate-400 uppercase tracking-wider px-3 py-3 sm:px-6">Asset</th>
+                <th className="text-left text-xs text-slate-400 uppercase tracking-wider px-3 py-3 sm:px-6">Date</th>
+                <th className="text-right text-xs text-slate-400 uppercase tracking-wider px-3 py-3 sm:px-6">Amount</th>
+                <th className="hidden sm:table-cell text-left text-xs text-slate-400 uppercase tracking-wider px-3 py-3 sm:px-6">Type</th>
+                <th className="hidden md:table-cell text-left text-xs text-slate-400 uppercase tracking-wider px-3 py-3 sm:px-6">Notes</th>
               </tr>
             </thead>
             <tbody>
@@ -150,26 +150,26 @@ export default function Transactions() {
                 const asset = assets.find(a => a.id === inv.asset_id)
                 return (
                   <tr key={inv.id} className="border-b border-slate-800 last:border-0 hover:bg-slate-800 transition-colors">
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-4 sm:px-6">
                       <div className="flex items-center gap-2">
-                        <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: asset?.color }} />
+                        <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: asset?.color }} />
                         <span className="text-sm font-medium text-white">{asset?.name ?? '—'}</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-sm text-slate-400">
+                    <td className="px-3 py-4 sm:px-6 text-sm text-slate-400 whitespace-nowrap">
                       {new Date(inv.date).toLocaleDateString('en-GB')}
                     </td>
-                    <td className="px-6 py-4 text-sm font-semibold text-white text-right">
+                    <td className="px-3 py-4 sm:px-6 text-sm font-semibold text-white text-right whitespace-nowrap">
                       €{inv.amount.toLocaleString()}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="hidden sm:table-cell px-3 py-4 sm:px-6">
                       <span className={`text-xs px-2 py-1 rounded-full font-medium ${
                         inv.type === 'manual' ? 'bg-slate-700 text-slate-300' : 'bg-indigo-900 text-indigo-300'
                       }`}>
                         {inv.type === 'manual' ? 'Manual' : 'Scheduled'}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-sm text-slate-500">
+                    <td className="hidden md:table-cell px-3 py-4 sm:px-6 text-sm text-slate-500">
                       {inv.notes ?? '—'}
                     </td>
                   </tr>

@@ -84,7 +84,6 @@ Tests are written with [Vitest](https://vitest.dev/) and [React Testing Library]
 - [ ] Portfolio evolution chart with invested vs current value comparison
 - [ ] Multi-currency support
 - [ ] Export data to CSV/PDF
-- [ ] Mobile responsive design
 - [ ] Push notifications for scheduled contributions
 - [ ] Multiple portfolios per user
 

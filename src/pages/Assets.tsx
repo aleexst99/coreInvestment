@@ -118,11 +118,11 @@ export default function Assets() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
         <h1 className="text-2xl font-bold text-white">Assets</h1>
         <button
           onClick={openCreateModal}
-          className="bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+          className="bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors whitespace-nowrap"
         >
           + New asset
         </button>
@@ -135,11 +135,11 @@ export default function Assets() {
           <table className="w-full">
             <thead>
               <tr className="border-b border-slate-800">
-                <th className="text-left text-xs text-slate-400 uppercase tracking-wider px-6 py-3">Asset</th>
-                <th className="text-left text-xs text-slate-400 uppercase tracking-wider px-6 py-3">Type</th>
-                <th className="text-right text-xs text-slate-400 uppercase tracking-wider px-6 py-3">Invested</th>
-                <th className="text-right text-xs text-slate-400 uppercase tracking-wider px-6 py-3">Current value</th>
-                <th className="px-6 py-3"></th>
+                <th className="text-left text-xs text-slate-400 uppercase tracking-wider px-3 py-3 sm:px-6">Asset</th>
+                <th className="hidden sm:table-cell text-left text-xs text-slate-400 uppercase tracking-wider px-3 py-3 sm:px-6">Type</th>
+                <th className="text-right text-xs text-slate-400 uppercase tracking-wider px-3 py-3 sm:px-6">Invested</th>
+                <th className="text-right text-xs text-slate-400 uppercase tracking-wider px-3 py-3 sm:px-6">Current value</th>
+                <th className="px-3 py-3 sm:px-6"></th>
               </tr>
             </thead>
             <tbody>
@@ -150,41 +150,41 @@ export default function Assets() {
 
                 return (
                   <tr key={asset.id} className="border-b border-slate-800 last:border-0 hover:bg-slate-800 transition-colors">
-                    <td className="px-6 py-4">
-                      <div className="flex items-center gap-3">
-                        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: asset.color }} />
+                    <td className="px-3 py-4 sm:px-6">
+                      <div className="flex items-center gap-2 sm:gap-3">
+                        <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: asset.color }} />
                         <span className="text-sm font-semibold text-white">{asset.name}</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="hidden sm:table-cell px-3 py-4 sm:px-6">
                       <span className="text-xs bg-slate-800 text-slate-300 px-2 py-1 rounded-full">
                         {ASSET_TYPE_LABELS[asset.type]}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-sm font-semibold text-white text-right">
+                    <td className="px-3 py-4 sm:px-6 text-sm font-semibold text-white text-right whitespace-nowrap">
                       €{totalInvested.toLocaleString()}
                     </td>
-                    <td className="px-6 py-4 text-right">
-                      <span className="text-sm font-semibold text-white">
+                    <td className="px-3 py-4 sm:px-6 text-right">
+                      <span className="text-sm font-semibold text-white whitespace-nowrap">
                         {latest ? `€${latest.value.toLocaleString()}` : '—'}
                       </span>
                       {latest && (
-                        <span className="text-xs text-slate-500 ml-2">
+                        <span className="hidden md:inline text-xs text-slate-500 ml-2">
                           {new Date(latest.date).toLocaleDateString('en-GB')}
                         </span>
                       )}
                     </td>
-                    <td className="px-6 py-4">
-                      <div className="flex items-center justify-end gap-2">
+                    <td className="px-3 py-4 sm:px-6">
+                      <div className="flex items-center justify-end gap-1 sm:gap-2">
                         <button
                           onClick={() => openEditModal(asset)}
-                          className="text-slate-400 hover:text-white text-xs px-3 py-1.5 rounded-lg hover:bg-slate-700 transition-colors"
+                          className="text-slate-400 hover:text-white text-xs px-2 py-1.5 sm:px-3 rounded-lg hover:bg-slate-700 transition-colors"
                         >
                           Edit
                         </button>
                         <button
                           onClick={() => setDeletingAsset(asset)}
-                          className="text-slate-400 hover:text-red-400 text-xs px-3 py-1.5 rounded-lg hover:bg-slate-700 transition-colors"
+                          className="text-slate-400 hover:text-red-400 text-xs px-2 py-1.5 sm:px-3 rounded-lg hover:bg-slate-700 transition-colors"
                         >
                           Delete
                         </button>
